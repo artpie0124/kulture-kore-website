@@ -32,30 +32,8 @@ function createParticle() {
   document.getElementById('particles-js').appendChild(particle);
 }
 
-// ===== CURSOR TRAIL EFFECT =====
-let cursorTrails = [];
-const maxTrails = 20;
-
-document.addEventListener('mousemove', function(e) {
-  if (window.innerWidth > 768) { // Only on desktop
-    const trail = document.createElement('div');
-    trail.className = 'cursor-trail';
-    trail.style.left = e.pageX + 'px';
-    trail.style.top = e.pageY + 'px';
-    document.body.appendChild(trail);
-    
-    cursorTrails.push(trail);
-    if (cursorTrails.length > maxTrails) {
-      const oldTrail = cursorTrails.shift();
-      oldTrail.remove();
-    }
-    
-    setTimeout(() => {
-      trail.remove();
-      cursorTrails = cursorTrails.filter(t => t !== trail);
-    }, 800);
-  }
-});
+// ===== CURSOR TRAIL EFFECT - REMOVED =====
+// Cursor trail effect removed due to performance issues
 
 // ===== MOBILE NAVIGATION =====
 document.addEventListener('DOMContentLoaded', function() {
@@ -396,9 +374,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ===== STAR FIELD EFFECT =====
+// ===== STAR FIELD EFFECT WITH MOUSE INTERACTION =====
+const stars = [];
+
 function createStarField() {
   const starField = document.createElement('div');
+  starField.id = 'star-field';
   starField.style.cssText = `
     position: fixed;
     top: 0;
@@ -411,21 +392,82 @@ function createStarField() {
   
   for (let i = 0; i < 100; i++) {
     const star = document.createElement('div');
+    const size = Math.random() * 2 + 1;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    
     star.style.cssText = `
       position: absolute;
-      width: ${Math.random() * 2}px;
-      height: ${Math.random() * 2}px;
+      width: ${size}px;
+      height: ${size}px;
       background: white;
       border-radius: 50%;
-      left: ${Math.random() * 100}vw;
-      top: ${Math.random() * 100}vh;
+      left: ${x}px;
+      top: ${y}px;
       opacity: ${Math.random() * 0.5 + 0.3};
       animation: twinkle ${Math.random() * 3 + 2}s ease-in-out infinite;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     `;
+    
+    // Store star data for interaction
+    stars.push({
+      element: star,
+      originalX: x,
+      originalY: y,
+      currentX: x,
+      currentY: y
+    });
+    
     starField.appendChild(star);
   }
   
   document.body.appendChild(starField);
+  
+  // Add mouse/touch interaction
+  let mouseX = 0;
+  let mouseY = 0;
+  
+  function updateStars() {
+    stars.forEach(star => {
+      const dx = star.currentX - mouseX;
+      const dy = star.currentY - mouseY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const interactionRadius = 150;
+      
+      if (distance < interactionRadius) {
+        // Push stars away from cursor
+        const force = (interactionRadius - distance) / interactionRadius;
+        const angle = Math.atan2(dy, dx);
+        const pushDistance = force * 50;
+        
+        const newX = star.originalX + Math.cos(angle) * pushDistance;
+        const newY = star.originalY + Math.sin(angle) * pushDistance;
+        
+        star.element.style.transform = `translate(${newX - star.originalX}px, ${newY - star.originalY}px)`;
+        star.element.style.opacity = 0.3;
+      } else {
+        // Return to original position
+        star.element.style.transform = 'translate(0, 0)';
+        star.element.style.opacity = '';
+      }
+    });
+    
+    requestAnimationFrame(updateStars);
+  }
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      mouseX = e.touches[0].clientX;
+      mouseY = e.touches[0].clientY;
+    }
+  });
+  
+  updateStars();
 }
 
 // Add twinkle animation

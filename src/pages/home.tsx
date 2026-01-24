@@ -39,12 +39,9 @@ export const HomePage = () => (
     <section class="section-lg bg-light" id="about">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="scroll-animate" style="margin-bottom: 0.5rem;">
+          <h2 class="scroll-animate" style="margin-bottom: 2rem;">
             WHO WE ARE
           </h2>
-          <h3 class="kr scroll-animate delay-100" style="font-size: clamp(1.4rem, 2.8vw, 2.1rem); margin-bottom: 2rem; opacity: 0.85;">
-            우리는
-          </h3>
           <p class="scroll-animate delay-200" style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 1rem auto;">
             Kulture Kore is an Art Holding Company that creates and manages five unique brands 
             across performance, agency, community, space, and stage sectors.
@@ -58,21 +55,21 @@ export const HomePage = () => (
         {/* Stats */}
         <div class="stats-grid">
           <div class="stat-item scroll-animate delay-100">
-            <span class="stat-number" data-count="500">0</span>
+            <span class="stat-number" data-count="500">500%</span>
             <span class="stat-label">Revenue Growth</span>
             <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
               매출 성장률 (2022-2025)
             </p>
           </div>
           <div class="stat-item scroll-animate delay-200">
-            <span class="stat-number" data-count="5">0</span>
+            <span class="stat-number" data-count="5">5</span>
             <span class="stat-label">Active Brands</span>
             <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
               운영 브랜드
             </p>
           </div>
           <div class="stat-item scroll-animate delay-300">
-            <span class="stat-number" data-count="100">0</span>
+            <span class="stat-number" data-count="100">100+</span>
             <span class="stat-label">Minimum Annual Events</span>
             <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
               연간 최소 공연/행사
@@ -86,12 +83,9 @@ export const HomePage = () => (
     <section class="section-lg" id="brands-preview">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="scroll-animate" style="margin-bottom: 0.5rem;">
+          <h2 class="scroll-animate" style="margin-bottom: 1.5rem;">
             OUR BRANDS
           </h2>
-          <h3 class="kr scroll-animate delay-100" style="font-size: clamp(1.4rem, 2.8vw, 2.1rem); margin-bottom: 1.5rem; opacity: 0.85;">
-            우리의 브랜드
-          </h3>
           <p class="scroll-animate delay-200" style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 0.5rem auto;">
             Five unique brands, one unified vision.
           </p>
@@ -103,17 +97,13 @@ export const HomePage = () => (
         <div class="brands-grid">
           {/* Artpie */}
           <a href="/brands" class="brand-card scroll-animate delay-100">
-            <div class="brand-icon">🎭</div>
+            <div class="brand-icon-img">
+              <img src="/static/brand-artpie.png" alt="Artpie" class="brand-logo" />
+            </div>
             <h3 class="brand-name">Artpie</h3>
-            <p class="brand-type kr">아트파이 • CREATE</p>
-            <p class="brand-desc">
-              기획사 - 공연·행사·교육 프로그램 기획
-            </p>
-            <p class="brand-desc">
-              Planning agency for performances, events, and education programs.
-            </p>
+            <p class="brand-type kr">아트파이 • Planning</p>
             <div class="brand-tags">
-              <span class="brand-tag">Planning</span>
+              <span class="brand-tag">Event</span>
               <span class="brand-tag">Performance</span>
               <span class="brand-tag">Education</span>
             </div>
@@ -121,33 +111,25 @@ export const HomePage = () => (
 
           {/* Utopia X */}
           <a href="/brands" class="brand-card scroll-animate delay-200">
-            <div class="brand-icon">⭐</div>
+            <div class="brand-icon-img">
+              <img src="/static/brand-utopiax.png" alt="Utopia X" class="brand-logo" />
+            </div>
             <h3 class="brand-name">Utopia X</h3>
-            <p class="brand-type kr">유토피아X • CONNECT</p>
-            <p class="brand-desc">
-              에이전시 - 댄서·뮤지션·MC 등 아티스트 매니지먼트
-            </p>
-            <p class="brand-desc">
-              Artist management for dancers, musicians, and MCs.
-            </p>
+            <p class="brand-type kr">유토피아X • Agency</p>
             <div class="brand-tags">
               <span class="brand-tag">Management</span>
               <span class="brand-tag">Artists</span>
-              <span class="brand-tag">Talent</span>
+              <span class="brand-tag">Celebrity</span>
             </div>
           </a>
 
           {/* Trendy Motion */}
           <a href="/brands" class="brand-card scroll-animate delay-300">
-            <div class="brand-icon">💃</div>
+            <div class="brand-icon-img">
+              <img src="/static/brand-trendy.png" alt="Trendy Motion" class="brand-logo" />
+            </div>
             <h3 class="brand-name">Trendy Motion</h3>
             <p class="brand-type kr">트렌디모션 • COMMUNITY</p>
-            <p class="brand-desc">
-              커뮤니티 - 춤 커뮤니티 (~100명 멤버)
-            </p>
-            <p class="brand-desc">
-              Dance community with approximately 100 members.
-            </p>
             <div class="brand-tags">
               <span class="brand-tag">Dance</span>
               <span class="brand-tag">Community</span>
@@ -157,15 +139,11 @@ export const HomePage = () => (
 
           {/* AP Studio */}
           <a href="/brands" class="brand-card scroll-animate delay-400">
-            <div class="brand-icon">🏢</div>
+            <div class="brand-icon-img">
+              <img src="/static/brand-apstudio.png" alt="AP Studio" class="brand-logo brand-logo-outline" />
+            </div>
             <h3 class="brand-name">AP Studio</h3>
             <p class="brand-type kr">에이피 스튜디오 • SPACE</p>
-            <p class="brand-desc">
-              공간 - 연습실 3개 + 사무실
-            </p>
-            <p class="brand-desc">
-              Creative space with 3 practice rooms and office.
-            </p>
             <div class="brand-tags">
               <span class="brand-tag">Studio</span>
               <span class="brand-tag">Practice</span>
@@ -175,15 +153,11 @@ export const HomePage = () => (
 
           {/* Walif */}
           <a href="/brands" class="brand-card scroll-animate delay-500">
-            <div class="brand-icon">🎪</div>
+            <div class="brand-icon-img">
+              <img src="/static/brand-walif.png" alt="Walif" class="brand-logo" />
+            </div>
             <h3 class="brand-name">Walif</h3>
-            <p class="brand-type kr">와리프 • STAGE</p>
-            <p class="brand-desc">
-              극장 - 관악구 30석 소극장
-            </p>
-            <p class="brand-desc">
-              Intimate 30-seat theater in Gwanak-gu.
-            </p>
+            <p class="brand-type kr">와리프 • Stage, Theater</p>
             <div class="brand-tags">
               <span class="brand-tag">Theater</span>
               <span class="brand-tag">Stage</span>
@@ -213,11 +187,6 @@ export const HomePage = () => (
           Let's collaborate and bring your artistic vision to life. 
           Contact us today to start your journey with Kulture Kore.
         </p>
-        <div class="scroll-animate delay-400" style="margin-top: 3rem;">
-          <a href="/contact" class="btn btn-primary" style="background: white; color: var(--primary); font-size: 1.1rem; padding: 1.2rem 2.5rem;">
-            Contact Us
-          </a>
-        </div>
       </div>
     </section>
 

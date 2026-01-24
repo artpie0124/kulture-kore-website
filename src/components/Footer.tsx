@@ -10,6 +10,9 @@ export const Footer = () => (
             <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link">
               <i class="fab fa-instagram"></i>
             </a>
+            <div class="footer-logo-center">
+              <img src="/static/logo-footer.png" alt="KK" class="footer-logo-img" />
+            </div>
             <a href="mailto:Official@kulturekore.com" class="social-link">
               <i class="fas fa-envelope"></i>
             </a>
@@ -36,14 +39,6 @@ export const Footer = () => (
           <a href="https://www.instagram.com/trendy_mo.o/" target="_blank" rel="noopener">Trendy Motion</a>
           <a href="https://naver.me/GctrVAP7" target="_blank" rel="noopener">AP Studio</a>
           <a href="https://www.spacecloud.kr/space/73075" target="_blank" rel="noopener">Walif</a>
-        </div>
-        
-        <div class="footer-section">
-          <h3>QUICK LINKS</h3>
-          <a href="/">Home</a>
-          <a href="/brands">Brands</a>
-          <a href="/contact">Contact</a>
-          <a href="https://www.kulturekore.com" target="_blank" rel="noopener">Official Website</a>
         </div>
       </div>
       
