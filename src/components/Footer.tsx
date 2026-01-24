@@ -7,14 +7,14 @@ export const Footer = () => (
           <p class="kr">세상을 바꾸는 일을 예술적으로 합니다.</p>
           <p>We change the world, artistically.</p>
           <div class="social-links">
-            <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link">
-              <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link social-link-with-icon">
+              <img src="/static/footer-icon.png" alt="Instagram" class="social-icon-img" />
             </a>
             <div class="footer-logo-center">
               <img src="/static/logo-footer.png" alt="KK" class="footer-logo-img" />
             </div>
-            <a href="mailto:Official@kulturekore.com" class="social-link">
-              <i class="fas fa-envelope"></i>
+            <a href="mailto:Official@kulturekore.com" class="social-link social-link-with-icon">
+              <img src="/static/footer-icon.png" alt="Email" class="social-icon-img" />
             </a>
           </div>
         </div>

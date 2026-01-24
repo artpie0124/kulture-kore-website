@@ -187,6 +187,11 @@ export const HomePage = () => (
           Let's collaborate and bring your artistic vision to life. 
           Contact us today to start your journey with Kulture Kore.
         </p>
+        <div class="scroll-animate delay-400" style="margin-top: 3rem;">
+          <a href="/contact" class="btn btn-primary" style="font-size: 1.5rem; padding: 1.5rem 3rem; font-weight: 900;">
+            YES!
+          </a>
+        </div>
       </div>
     </section>
 
