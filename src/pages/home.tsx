@@ -140,7 +140,7 @@ export const HomePage = () => (
           {/* AP Studio */}
           <a href="/brands" class="brand-card scroll-animate delay-400">
             <div class="brand-icon-img">
-              <img src="/static/brand-apstudio.png" alt="AP Studio" class="brand-logo brand-logo-outline" />
+              <img src="/static/apstudio-new.png" alt="AP Studio" class="brand-logo" />
             </div>
             <h3 class="brand-name">AP Studio</h3>
             <p class="brand-type kr">에이피 스튜디오 • SPACE</p>
@@ -154,7 +154,7 @@ export const HomePage = () => (
           {/* Walif */}
           <a href="/brands" class="brand-card scroll-animate delay-500">
             <div class="brand-icon-img">
-              <img src="/static/brand-walif.png" alt="Walif" class="brand-logo" />
+              <img src="/static/walif-new.png" alt="Walif" class="brand-logo" />
             </div>
             <h3 class="brand-name">Walif</h3>
             <p class="brand-type kr">와리프 • Stage, Theater</p>

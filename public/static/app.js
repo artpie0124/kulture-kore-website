@@ -457,15 +457,22 @@ function createStarField() {
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
-    mouseY = e.clientY;
+    mouseY = e.clientY + window.scrollY;
   });
   
   document.addEventListener('touchmove', (e) => {
     if (e.touches.length > 0) {
       mouseX = e.touches[0].clientX;
-      mouseY = e.touches[0].clientY;
+      mouseY = e.touches[0].clientY + window.scrollY;
     }
-  });
+  }, { passive: true });
+  
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+      mouseX = e.touches[0].clientX;
+      mouseY = e.touches[0].clientY + window.scrollY;
+    }
+  }, { passive: true });
   
   updateStars();
 }

@@ -891,6 +891,16 @@ p {
   background-size: 200% 200%;
 }
 
+.footer-section-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-section-center .social-links {
+  gap: 3rem;
+}
+
 .footer-section p,
 .footer-section a {
   color: var(--text-light);

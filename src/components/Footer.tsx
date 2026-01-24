@@ -3,23 +3,6 @@ export const Footer = () => (
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>KULTURE KORE</h3>
-          <p class="kr">세상을 바꾸는 일을 예술적으로 합니다.</p>
-          <p>We change the world, artistically.</p>
-          <div class="social-links">
-            <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link social-link-with-icon">
-              <img src="/static/footer-icon.png" alt="Instagram" class="social-icon-img" />
-            </a>
-            <div class="footer-logo-center">
-              <img src="/static/logo-footer.png" alt="KK" class="footer-logo-img" />
-            </div>
-            <a href="mailto:Official@kulturekore.com" class="social-link social-link-with-icon">
-              <img src="/static/footer-icon.png" alt="Email" class="social-icon-img" />
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-section">
           <h3>CONTACT</h3>
           <p>
             <i class="fas fa-envelope"></i> Official@kulturekore.com
@@ -30,6 +13,17 @@ export const Footer = () => (
           <p>
             <i class="fas fa-map-marker-alt"></i> 서울시 마포구 홍익로 6길 14
           </p>
+        </div>
+        
+        <div class="footer-section footer-section-center">
+          <div class="social-links">
+            <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:Official@kulturekore.com" class="social-link">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
         
         <div class="footer-section">
