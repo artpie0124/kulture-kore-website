@@ -5,8 +5,8 @@ export const Footer = () => (
         {/* 1번 파트 - 왼쪽: KULTURE KORE */}
         <div class="footer-section-new">
           <h3 class="footer-title">KULTURE KORE</h3>
-          <p class="kr footer-text">세상을 바꾸는 일을 예술적으로 합니다.</p>
-          <p class="footer-text">We change the world, artistically.</p>
+          <p class="kr footer-text">사람을 모으는 힘이 세상을 바꾸는 힘입니다</p>
+          <p class="footer-text">The power to bring people together is the power to change the world.</p>
           <div class="social-links">
             <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link">
               <i class="fab fa-instagram"></i>

@@ -503,15 +503,17 @@ p {
   gap: 6px;
   cursor: pointer;
   padding: 8px;
+  background: transparent;
+  border: none;
 }
 
 .nav-toggle span {
   width: 30px;
   height: 3px;
-  background: var(--gradient-neon);
+  background: white;
   border-radius: 3px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(181, 128, 255, 0.6);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 /* Epic Hero Section */
@@ -660,7 +662,7 @@ p {
 }
 
 .stat-number {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 900;
   font-family: var(--font-display);
   background: var(--gradient-gold);
@@ -672,6 +674,8 @@ p {
   text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
   animation: rainbowShift 6s ease infinite;
   background-size: 200% 200%;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .stat-label {
@@ -685,10 +689,30 @@ p {
 /* 3D Brand Cards */
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
   margin-top: 4rem;
   perspective: 1000px;
+}
+
+/* Last row (AP Studio & Walif) centered */
+.brands-grid > .brand-card:nth-child(4),
+.brands-grid > .brand-card:nth-child(5) {
+  grid-column: auto;
+}
+
+/* Center align last 2 cards when in 3-column layout */
+@supports (grid-template-columns: repeat(3, 1fr)) {
+  .brands-grid::after {
+    content: '';
+    grid-column: 1;
+  }
+  .brands-grid > .brand-card:nth-child(4) {
+    grid-column: 2;
+  }
+  .brands-grid > .brand-card:nth-child(5) {
+    grid-column: 3;
+  }
 }
 
 .brand-card {
@@ -706,6 +730,8 @@ p {
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
+  cursor: default;
+  pointer-events: none;
 }
 
 .brand-card::before {
@@ -1178,12 +1204,33 @@ p {
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .stat-item {
+    padding: 2rem 1.5rem;
+    min-width: 0;
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 12vw, 3rem);
+    word-break: keep-all;
   }
 
   .brands-grid {
     grid-template-columns: 1fr;
+  }
+  
+  /* Reset centering for mobile */
+  .brands-grid::after {
+    display: none;
+  }
+  
+  .brands-grid > .brand-card:nth-child(4),
+  .brands-grid > .brand-card:nth-child(5) {
+    grid-column: auto;
   }
 
   .footer-content {
@@ -1229,14 +1276,14 @@ p {
 /* Scroll Animations with 3D */
 .scroll-animate {
   opacity: 0;
-  transform: translateY(50px) rotateX(-10deg);
-  transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .scroll-animate.visible {
   opacity: 1;
-  transform: translateY(0) rotateX(0);
+  transform: translateY(0);
 }
 
 /* Particle container */
@@ -1617,6 +1664,8 @@ p {
     inset 0 0 0 1px rgba(181, 128, 255, 0.12);
   border: 2px solid rgba(181, 128, 255, 0.18);
   transition: all 0.4s ease;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-form-container-enhanced:hover,
@@ -1783,4 +1832,29 @@ body {
 
 a, button {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" stroke="%23B580FF" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'), pointer;
+}
+
+/* Mobile Contact Page Fixes */
+@media (max-width: 768px) {
+  .contact-form-container-enhanced,
+  .contact-info-container-enhanced {
+    padding: 1.5rem;
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+  }
+  
+  .form-input-dark,
+  .form-select-dark,
+  .form-textarea-dark {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .contact-info-item-enhanced {
+    padding: 1.5rem;
+  }
+  
+  .map-container-enhanced {
+    margin: 0 -1.5rem;
+    border-radius: 0;
+  }
 }

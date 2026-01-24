@@ -96,7 +96,7 @@ export const HomePage = () => (
 
         <div class="brands-grid">
           {/* Artpie */}
-          <a href="/brands" class="brand-card scroll-animate delay-100">
+          <div class="brand-card scroll-animate delay-100">
             <div class="brand-icon-img">
               <img src="/static/brand-artpie.png" alt="Artpie" class="brand-logo" />
             </div>
@@ -107,10 +107,10 @@ export const HomePage = () => (
               <span class="brand-tag">Performance</span>
               <span class="brand-tag">Education</span>
             </div>
-          </a>
+          </div>
 
           {/* Utopia X */}
-          <a href="/brands" class="brand-card scroll-animate delay-200">
+          <div class="brand-card scroll-animate delay-200">
             <div class="brand-icon-img">
               <img src="/static/brand-utopiax.png" alt="Utopia X" class="brand-logo" />
             </div>
@@ -121,10 +121,10 @@ export const HomePage = () => (
               <span class="brand-tag">Artists</span>
               <span class="brand-tag">Celebrity</span>
             </div>
-          </a>
+          </div>
 
           {/* Trendy Motion */}
-          <a href="/brands" class="brand-card scroll-animate delay-300">
+          <div class="brand-card scroll-animate delay-300">
             <div class="brand-icon-img">
               <img src="/static/brand-trendy.png" alt="Trendy Motion" class="brand-logo" />
             </div>
@@ -135,10 +135,10 @@ export const HomePage = () => (
               <span class="brand-tag">Community</span>
               <span class="brand-tag">Network</span>
             </div>
-          </a>
+          </div>
 
           {/* AP Studio */}
-          <a href="/brands" class="brand-card scroll-animate delay-400">
+          <div class="brand-card scroll-animate delay-400">
             <div class="brand-icon-img">
               <img src="/static/apstudio-new.png" alt="AP Studio" class="brand-logo" />
             </div>
@@ -149,10 +149,10 @@ export const HomePage = () => (
               <span class="brand-tag">Practice</span>
               <span class="brand-tag">Workspace</span>
             </div>
-          </a>
+          </div>
 
           {/* Walif */}
-          <a href="/brands" class="brand-card scroll-animate delay-500">
+          <div class="brand-card scroll-animate delay-500">
             <div class="brand-icon-img">
               <img src="/static/walif-new.png" alt="Walif" class="brand-logo" />
             </div>
@@ -163,7 +163,7 @@ export const HomePage = () => (
               <span class="brand-tag">Stage</span>
               <span class="brand-tag">Venue</span>
             </div>
-          </a>
+          </div>
         </div>
 
         <div class="text-center mt-5 scroll-animate">
