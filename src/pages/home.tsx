@@ -9,9 +9,12 @@ export const HomePage = () => (
     <section class="hero" id="hero">
       <div class="hero-content">
         <div class="animate-fadeIn">
-          <h1 style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; margin-bottom: 1rem;">
-            KULTURE KORE
-          </h1>
+          <img 
+            src="/static/logo-hero.png" 
+            alt="KULTURE KORE" 
+            class="hero-logo" 
+            style="max-width: 800px; width: 90%; height: auto; margin: 0 auto; display: block;"
+          />
         </div>
         <div class="animate-fadeIn delay-200">
           <p style="font-size: clamp(1.2rem, 3vw, 1.8rem); margin-bottom: 0.5rem; font-weight: 600;">
@@ -23,7 +26,7 @@ export const HomePage = () => (
         </div>
         <div class="animate-fadeIn delay-400" style="margin-top: 3rem;">
           <a href="/contact" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">
-            Get in Touch
+            CONTACT US
           </a>
         </div>
         <div class="animate-pulse delay-600" style="margin-top: 5rem;">
@@ -36,9 +39,12 @@ export const HomePage = () => (
     <section class="section-lg bg-light" id="about">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="scroll-animate">
-            WHO WE ARE <span class="kr">우리는</span>
+          <h2 class="scroll-animate" style="margin-bottom: 0.5rem;">
+            WHO WE ARE
           </h2>
+          <h3 class="kr scroll-animate delay-100" style="font-size: clamp(1.4rem, 2.8vw, 2.1rem); margin-bottom: 2rem; opacity: 0.85;">
+            우리는
+          </h3>
           <p class="scroll-animate delay-200" style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 1rem auto;">
             Kulture Kore is an Art Holding Company that creates and manages five unique brands 
             across performance, agency, community, space, and stage sectors.
@@ -53,30 +59,23 @@ export const HomePage = () => (
         <div class="stats-grid">
           <div class="stat-item scroll-animate delay-100">
             <span class="stat-number" data-count="500">0</span>
-            <span class="stat-label">% Revenue Growth</span>
+            <span class="stat-label">Revenue Growth</span>
             <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
               매출 성장률 (2022-2025)
             </p>
           </div>
           <div class="stat-item scroll-animate delay-200">
-            <span class="stat-number" data-count="200">0</span>
-            <span class="stat-label">Partner Artists</span>
-            <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
-              파트너 아티스트
-            </p>
-          </div>
-          <div class="stat-item scroll-animate delay-300">
-            <span class="stat-number" data-count="100">0</span>
-            <span class="stat-label">Annual Events</span>
-            <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
-              연간 공연/행사
-            </p>
-          </div>
-          <div class="stat-item scroll-animate delay-400">
             <span class="stat-number" data-count="5">0</span>
             <span class="stat-label">Active Brands</span>
             <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
               운영 브랜드
+            </p>
+          </div>
+          <div class="stat-item scroll-animate delay-300">
+            <span class="stat-number" data-count="100">0</span>
+            <span class="stat-label">Minimum Annual Events</span>
+            <p class="kr" style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
+              연간 최소 공연/행사
             </p>
           </div>
         </div>
@@ -87,11 +86,17 @@ export const HomePage = () => (
     <section class="section-lg" id="brands-preview">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="scroll-animate">
-            OUR BRANDS <span class="kr">우리의 브랜드</span>
+          <h2 class="scroll-animate" style="margin-bottom: 0.5rem;">
+            OUR BRANDS
           </h2>
-          <p class="scroll-animate delay-200" style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 1rem auto;">
+          <h3 class="kr scroll-animate delay-100" style="font-size: clamp(1.4rem, 2.8vw, 2.1rem); margin-bottom: 1.5rem; opacity: 0.85;">
+            우리의 브랜드
+          </h3>
+          <p class="scroll-animate delay-200" style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 0.5rem auto;">
             Five unique brands, one unified vision.
+          </p>
+          <p class="kr scroll-animate delay-300" style="font-size: 1.1rem; color: var(--text-light); max-width: 800px; margin: 0.5rem auto;">
+            다섯 가지 브랜드를, 한번에
           </p>
         </div>
 

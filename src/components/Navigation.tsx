@@ -1,7 +1,9 @@
 export const Navigation = () => (
   <nav class="nav" id="navbar">
     <div class="nav-content">
-      <a href="/" class="nav-logo">KULTURE KORE</a>
+      <a href="/" class="nav-logo-link">
+        <img src="/static/logo-nav.png" alt="KULTURE KORE" class="nav-logo-img" />
+      </a>
       
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <span></span>

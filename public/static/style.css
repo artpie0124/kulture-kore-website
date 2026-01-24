@@ -435,19 +435,26 @@ p {
   margin: 0 auto;
 }
 
-.nav-logo {
-  font-size: 1.8rem;
-  font-weight: 900;
-  font-family: var(--font-display);
-  background: var(--gradient-rainbow);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.nav-logo-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  animation: rainbowShift 5s ease infinite;
-  background-size: 200% 200%;
-  text-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
-  letter-spacing: 3px;
+  transition: all 0.3s ease;
+}
+
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.nav-logo-link:hover .nav-logo-img {
+  filter: 
+    brightness(0) invert(1)
+    drop-shadow(0 0 15px rgba(181, 128, 255, 0.8))
+    drop-shadow(0 0 30px rgba(108, 92, 231, 0.6));
+  transform: scale(1.05);
 }
 
 .nav-menu {
@@ -571,6 +578,32 @@ p {
   z-index: 2;
   max-width: 1000px;
   padding: 3rem;
+}
+
+/* Hero Logo with Glow Effect */
+.hero-logo {
+  filter: 
+    brightness(0) invert(1)
+    drop-shadow(0 0 30px rgba(162, 155, 254, 0.8))
+    drop-shadow(0 0 60px rgba(108, 92, 231, 0.6))
+    drop-shadow(0 0 90px rgba(181, 128, 255, 0.4));
+  animation: heroLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes heroLogoGlow {
+  0%, 100% {
+    filter: 
+      brightness(0) invert(1)
+      drop-shadow(0 0 30px rgba(162, 155, 254, 0.8))
+      drop-shadow(0 0 60px rgba(108, 92, 231, 0.6));
+  }
+  50% {
+    filter: 
+      brightness(0) invert(1)
+      drop-shadow(0 0 40px rgba(162, 155, 254, 1))
+      drop-shadow(0 0 80px rgba(108, 92, 231, 0.8))
+      drop-shadow(0 0 120px rgba(181, 128, 255, 0.6));
+  }
 }
 
 /* Glowing Stats */
