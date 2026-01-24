@@ -13,6 +13,11 @@ export const ContactPage = () => (
             CONTACT US
           </h1>
         </div>
+        <div class="animate-fadeIn delay-200">
+          <p style="font-size: clamp(1rem, 2.5vw, 1.3rem); opacity: 0.9; max-width: 700px; margin: 1rem auto;">
+            Ready to start your creative journey? Get in touch with us today.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -23,10 +28,7 @@ export const ContactPage = () => (
           
           {/* Contact Form */}
           <div class="contact-form-container-enhanced scroll-animate">
-            <h2 style="margin-bottom: 1rem; color: var(--secondary);">Send us a message</h2>
-            <p class="kr" style="color: rgba(45, 52, 54, 0.7); margin-bottom: 2rem;">
-              메시지를 보내주세요
-            </p>
+            <h2 style="margin-bottom: 2rem; color: var(--secondary);">Send us a message</h2>
             
             <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" id="contact-form">
               <div class="form-group">
@@ -128,9 +130,15 @@ export const ContactPage = () => (
               </div>
               <div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--secondary);">Phone</h3>
-                <a href="tel:070-7585-6123" style="color: rgba(45, 52, 54, 0.8); text-decoration: none;">
-                  070-7585-6123
-                </a>
+                <p style="margin: 0; color: rgba(45, 52, 54, 0.8);">
+                  <a href="tel:+82-70-7585-6123" style="color: rgba(45, 52, 54, 0.8); text-decoration: none;">
+                    +82 70-7585-6123
+                  </a>
+                  {' / '}
+                  <a href="tel:+82-10-5843-1809" style="color: rgba(45, 52, 54, 0.8); text-decoration: none;">
+                    +82 10-5843-1809
+                  </a>
+                </p>
               </div>
             </div>
             
@@ -147,26 +155,14 @@ export const ContactPage = () => (
               </div>
             </div>
             
-            <div class="contact-info-card">
-              <div class="contact-icon-enhanced">
-                <i class="fas fa-globe"></i>
-              </div>
-              <div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--secondary);">Website</h3>
-                <a href="https://www.kulturekore.com" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 600;">
-                  www.kulturekore.com
-                </a>
-              </div>
-            </div>
-            
             <div style="margin-top: 3rem;">
               <h3 style="margin-bottom: 1rem; color: var(--secondary);">Follow Us / 팔로우</h3>
               <div class="social-links" style="display: flex; gap: 1rem;">
                 <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link-enhanced">
                   <i class="fab fa-instagram"></i>
                 </a>
-                <a href="mailto:Official@kulturekore.com" class="social-link-enhanced">
-                  <i class="fas fa-envelope"></i>
+                <a href="https://www.youtube.com/@kulturekore" target="_blank" rel="noopener" class="social-link-enhanced">
+                  <i class="fab fa-youtube"></i>
                 </a>
               </div>
             </div>

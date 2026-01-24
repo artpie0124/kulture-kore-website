@@ -11,6 +11,9 @@ export const Footer = () => (
             <a href="https://www.instagram.com/utopiax.official/" target="_blank" rel="noopener" class="social-link">
               <i class="fab fa-instagram"></i>
             </a>
+            <a href="https://www.youtube.com/@kulturekore" target="_blank" rel="noopener" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
             <a href="mailto:Official@kulturekore.com" class="social-link">
               <i class="fas fa-envelope"></i>
             </a>
