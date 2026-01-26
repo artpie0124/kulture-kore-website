@@ -42,9 +42,26 @@ export const Footer = () => (
         </div>
       </div>
       
-      <div class="footer-bottom">
-        <p>&copy; 2022-2026 Kulture Kore Corp. All rights reserved.</p>
-        <p>CEO: Jeon Sang-jin | Business Registration Number</p>
+      <div class="footer-bottom-new">
+        <div class="footer-bottom-section">
+          <p class="footer-bottom-text kr">컬쳐코어 Kulture Kore</p>
+          <p class="footer-bottom-text">대표 : 전상진, 김성광</p>
+          <p class="footer-bottom-text">CEO: Jeon Sang-jin, Kim Sung-kwang</p>
+          <p class="footer-bottom-text">연락처 Tel: +82 70-7585-6123</p>
+        </div>
+        
+        <div class="footer-bottom-section">
+          <p class="footer-bottom-text">등록번호 Business Registration: 000-00-00000</p>
+          <p class="footer-bottom-text kr">주소: 서울시 마포구 홍익로 6길 14</p>
+          <p class="footer-bottom-text">Address: 14, Hongik-ro 6-gil, Mapo-gu, Seoul, Korea</p>
+          <p class="footer-bottom-text">팩스 Fax: +82 70-7585-6124</p>
+        </div>
+        
+        <div class="footer-bottom-section">
+          <p class="footer-bottom-text">&copy; 2022 Kulture Kore All rights reserved.</p>
+          <p class="footer-bottom-text">2023-서울마포-0566</p>
+          <p class="footer-bottom-text">이메일 Email: official@kulturekore.com</p>
+        </div>
       </div>
     </div>
   </footer>

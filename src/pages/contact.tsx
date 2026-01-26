@@ -202,6 +202,13 @@ export const ContactPage = () => (
         .contact-grid {
           grid-template-columns: 1fr;
           gap: 3rem;
+          max-width: 100%;
+          padding: 0 1rem;
+        }
+        
+        .container-wide {
+          padding: 0 1rem;
+          max-width: 100%;
         }
       }
     `}</style>
