@@ -24,8 +24,8 @@ var CONFIG = {
   // 설정을 모두 마치고 테스트가 끝나면 false로 바꾸세요.
   DRY_RUN: true,
 
-  // 문자 발송 업체: 'aligo'(알리고) 또는 'solapi'(솔라피)
-  PROVIDER: 'aligo',
+  // 문자 발송 업체: 'ppurio'(뿌리오), 'aligo'(알리고), 'solapi'(솔라피)
+  PROVIDER: 'ppurio',
 
   // 예약 알림 메일을 찾는 Gmail 검색어.
   // 실제 예약 알림 메일이 도착하면 제목을 확인하고 필요 시 조정하세요.
@@ -198,13 +198,96 @@ function sendSms_(to, text) {
     Logger.log('[테스트 모드] 실제 발송 안 함.\n받는 사람: ' + to + '\n내용:\n' + text);
     return;
   }
-  if (CONFIG.PROVIDER === 'aligo') {
+  if (CONFIG.PROVIDER === 'ppurio') {
+    sendViaPpurio_(to, text);
+  } else if (CONFIG.PROVIDER === 'aligo') {
     sendViaAligo_(to, text);
   } else if (CONFIG.PROVIDER === 'solapi') {
     sendViaSolapi_(to, text);
   } else {
     throw new Error('알 수 없는 PROVIDER 설정: ' + CONFIG.PROVIDER);
   }
+}
+
+// --- 뿌리오 (https://www.ppurio.com) ---
+// 스크립트 속성 필요: PPURIO_ACCOUNT(뿌리오 아이디), PPURIO_API_KEY, SENDER_PHONE
+function sendViaPpurio_(to, text) {
+  var props = PropertiesService.getScriptProperties();
+  var account = props.getProperty('PPURIO_ACCOUNT');
+  var sender = props.getProperty('SENDER_PHONE');
+  if (!account || !sender) {
+    throw new Error('스크립트 속성에 PPURIO_ACCOUNT / PPURIO_API_KEY / SENDER_PHONE을 설정하세요.');
+  }
+
+  var isLms = smsByteLength_(text) > 90;
+  var payload = {
+    account: account,
+    messageType: isLms ? 'LMS' : 'SMS',
+    content: text,
+    from: sender.replace(/-/g, ''),
+    duplicateFlag: 'N',
+    targetCount: 1,
+    targets: [{ to: to }],
+    refKey: Utilities.getUuid().slice(0, 32)
+  };
+  if (isLms) payload.subject = CONFIG.LMS_TITLE;
+
+  var res = UrlFetchApp.fetch('https://message.ppurio.com/v1/message', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { Authorization: 'Bearer ' + getPpurioToken_() },
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
+  if (res.getResponseCode() >= 300) {
+    // 토큰 만료(401)면 새 토큰으로 1회 재시도
+    if (res.getResponseCode() === 401) {
+      props.deleteProperty('PPURIO_TOKEN');
+      res = UrlFetchApp.fetch('https://message.ppurio.com/v1/message', {
+        method: 'post',
+        contentType: 'application/json',
+        headers: { Authorization: 'Bearer ' + getPpurioToken_() },
+        payload: JSON.stringify(payload),
+        muteHttpExceptions: true
+      });
+      if (res.getResponseCode() < 300) return;
+    }
+    throw new Error('뿌리오 발송 실패 (HTTP ' + res.getResponseCode() + '): ' + res.getContentText());
+  }
+}
+
+// 뿌리오 인증 토큰 발급 (24시간 유효 — 캐시해서 재사용)
+function getPpurioToken_() {
+  var props = PropertiesService.getScriptProperties();
+  var cached = props.getProperty('PPURIO_TOKEN');
+  var exp = Number(props.getProperty('PPURIO_TOKEN_EXP') || 0);
+  if (cached && Date.now() < exp) return cached;
+
+  var account = props.getProperty('PPURIO_ACCOUNT');
+  var apiKey = props.getProperty('PPURIO_API_KEY');
+  if (!account || !apiKey) {
+    throw new Error('스크립트 속성에 PPURIO_ACCOUNT / PPURIO_API_KEY를 설정하세요.');
+  }
+
+  var res = UrlFetchApp.fetch('https://message.ppurio.com/v1/token', {
+    method: 'post',
+    headers: {
+      Authorization: 'Basic ' + Utilities.base64Encode(account + ':' + apiKey)
+    },
+    muteHttpExceptions: true
+  });
+  if (res.getResponseCode() >= 300) {
+    throw new Error('뿌리오 토큰 발급 실패 (HTTP ' + res.getResponseCode() + '): ' + res.getContentText() +
+      '\n※ 아이디/API키 확인. "IP" 관련 오류라면 뿌리오 API 설정의 연동 IP 제한 문제입니다 (README 참고).');
+  }
+  var json = JSON.parse(res.getContentText());
+  var token = json.token || json.accessToken;
+  if (!token) throw new Error('뿌리오 토큰 응답 형식 오류: ' + res.getContentText());
+
+  props.setProperty('PPURIO_TOKEN', token);
+  // 23시간 캐시 (실제 유효기간 24시간)
+  props.setProperty('PPURIO_TOKEN_EXP', String(Date.now() + 23 * 60 * 60 * 1000));
+  return token;
 }
 
 // --- 알리고 (https://smartsms.aligo.in) ---
