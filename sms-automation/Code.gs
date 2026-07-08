@@ -24,8 +24,11 @@ var CONFIG = {
   // 설정을 모두 마치고 테스트가 끝나면 false로 바꾸세요.
   DRY_RUN: true,
 
-  // 문자 발송 업체: 'ppurio'(뿌리오), 'aligo'(알리고), 'solapi'(솔라피)
-  PROVIDER: 'ppurio',
+  // 문자 발송 방식:
+  //   'phone'  = 사장님 안드로이드 폰으로 직접 발송 (MacroDroid 앱, 건당 0원)
+  //   'ppurio' = 뿌리오 API (IP 등록 필요 — 구글 서버에서는 사용 불가)
+  //   'aligo'  = 알리고 API, 'solapi' = 솔라피 API
+  PROVIDER: 'phone',
 
   // 예약 알림 메일을 찾는 Gmail 검색어.
   // 실제 예약 알림 메일이 도착하면 제목을 확인하고 필요 시 조정하세요.
@@ -198,7 +201,9 @@ function sendSms_(to, text) {
     Logger.log('[테스트 모드] 실제 발송 안 함.\n받는 사람: ' + to + '\n내용:\n' + text);
     return;
   }
-  if (CONFIG.PROVIDER === 'ppurio') {
+  if (CONFIG.PROVIDER === 'phone') {
+    sendViaPhone_(to, text);
+  } else if (CONFIG.PROVIDER === 'ppurio') {
     sendViaPpurio_(to, text);
   } else if (CONFIG.PROVIDER === 'aligo') {
     sendViaAligo_(to, text);
@@ -206,6 +211,24 @@ function sendSms_(to, text) {
     sendViaSolapi_(to, text);
   } else {
     throw new Error('알 수 없는 PROVIDER 설정: ' + CONFIG.PROVIDER);
+  }
+}
+
+// --- 사장님 안드로이드 폰으로 직접 발송 (MacroDroid 앱 필요) ---
+// 스크립트 속성 필요: PHONE_WEBHOOK_URL (MacroDroid 웹훅 트리거 URL)
+// 폰의 MacroDroid가 이 신호를 받아 폰 요금제로 문자를 발송합니다.
+function sendViaPhone_(to, text) {
+  var props = PropertiesService.getScriptProperties();
+  var webhook = props.getProperty('PHONE_WEBHOOK_URL');
+  if (!webhook) {
+    throw new Error('스크립트 속성에 PHONE_WEBHOOK_URL을 설정하세요. (MacroDroid 웹훅 주소)');
+  }
+  var url = webhook + (webhook.indexOf('?') === -1 ? '?' : '&') +
+    'to=' + encodeURIComponent(to) +
+    '&text=' + encodeURIComponent(text);
+  var res = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
+  if (res.getResponseCode() >= 300) {
+    throw new Error('휴대폰 발송 신호 전송 실패 (HTTP ' + res.getResponseCode() + '): ' + res.getContentText());
   }
 }
 
