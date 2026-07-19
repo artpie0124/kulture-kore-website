@@ -66,6 +66,7 @@ var CONFIG = {
     '■ 주소: [극장 주소 입력] (지하 1층, 엘리베이터 없음)',
     '■ 출입 비밀번호: [비밀번호 입력]',
     '■ 주차: 건물 주차 불가, 대중교통 이용을 부탁드립니다',
+    '■ 공간 매뉴얼: https://drive.google.com/file/d/1h4g8SwXCYtAI1xqXXID3ERscSRrL-b61/view?usp=sharing',
     '',
     '※ 퇴실 시 소등 및 정리 부탁드립니다.',
     '문의: [극장 연락처 입력]'
