@@ -65,7 +65,7 @@
 ## 설정 바꾸기 (`config.js`)
 
 - `MESSAGE_TEMPLATE` — 고객에게 보낼 문자 내용 (주소/비밀번호/문의처)
-- `SPACE_FILTER` — 이 단어가 포함된 예약만 처리 (현재 `'와리프'`)
+- `SPACE_FILTER` — 이 단어가 포함된 예약만 처리. 현재 단일 공간(아트파이 라이브하우스)만 운영하므로 빈값 `''`(모든 예약확정 건에 발송)
 - `POLL_INTERVAL_SEC` — 확인 주기(초). 기본 120초
 - `PHONE_WEBHOOK_URL` — 문자 발송용 MacroDroid 웹훅 주소
 
