@@ -193,7 +193,7 @@ async function checkOnce(context, processed, isFirstRun) {
   }
 }
 
-(async () => {
+async function main() {
   if (!fs.existsSync(sessionPath)) {
     console.error('❌ 로그인 세션이 없습니다. 먼저 "로그인.bat"을 실행하세요.');
     process.exit(1);
@@ -218,4 +218,12 @@ async function checkOnce(context, processed, isFirstRun) {
     isFirst = false; // 이후부터는 실제 발송
     await new Promise((r) => setTimeout(r, CONFIG.POLL_INTERVAL_SEC * 1000));
   }
-})();
+}
+
+// 이 파일을 직접 실행할 때만 감시 루프를 돌립니다.
+// (다른 파일에서 require 하면 아래 함수들만 가져다 쓸 수 있어 테스트가 쉬워집니다)
+if (require.main === module) {
+  main();
+}
+
+module.exports = { parseReservations, buildMessage, gotoReservations, checkOnce };
