@@ -6,7 +6,9 @@ module.exports = {
   RESERVATION_LIST_URL: 'https://partner.spacecloud.kr/reservation',
 
   // 이 공간 이름이 포함된 예약만 처리합니다. 전부 처리하려면 ''
-  SPACE_FILTER: '와리프',
+  // 현재 '아트파이 라이브하우스' 단일 공간만 운영하므로 빈값으로 두어
+  // 모든 예약확정 건에 문자를 보냅니다. (공간명이 바뀌어도 영향 없음)
+  SPACE_FILTER: '',
 
   // 몇 초마다 새 예약을 확인할지 (초). 너무 짧으면 사이트에 부담/차단 위험.
   POLL_INTERVAL_SEC: 120,
