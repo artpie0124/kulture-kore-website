@@ -1,0 +1,15 @@
+{
+  "name": "spacecloud-auto",
+  "version": "1.0.0",
+  "description": "스페이스클라우드 예약 자동 감지 → 고객 안내 문자 자동 발송 (상시가동 브라우저 자동화)",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "login": "node login.js",
+    "discover": "node discover.js",
+    "watch": "node watch.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
