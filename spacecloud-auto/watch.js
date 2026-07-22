@@ -92,25 +92,56 @@ async function sendSms(to, text) {
   if (!res.ok) throw new Error('문자 발송 신호 실패 HTTP ' + res.status);
 }
 
+// 일시적 네트워크/DNS 오류(ERR_NAME_NOT_RESOLVED 등)에 대비해 최대 3회 재시도
+async function gotoReservations(page) {
+  let lastErr;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      await page.goto(CONFIG.RESERVATION_LIST_URL, {
+        // networkidle은 SPA에서 통신이 멈추지 않아 매번 타임아웃 → 사용하지 않음
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      });
+      return;
+    } catch (e) {
+      lastErr = e;
+      log('페이지 접속 실패(' + attempt + '/3): ' + e.message + ' → 5초 후 재시도');
+      await page.waitForTimeout(5000);
+    }
+  }
+  throw lastErr;
+}
+
 async function checkOnce(context, processed, isFirstRun) {
   const page = await context.newPage();
   try {
-    await page.goto(CONFIG.RESERVATION_LIST_URL, {
-      waitUntil: 'networkidle',
-      timeout: 60000
-    });
-    await page.waitForTimeout(3500); // SPA 렌더링 대기
+    await gotoReservations(page);
 
     if (/login/i.test(page.url())) {
       log('⚠️ 로그인이 만료되었습니다. "로그인.bat"을 다시 실행해 재로그인하세요.');
       return;
     }
 
+    // 고정 대기 대신, 예약 목록(또는 "예약 없음" 화면)이 실제로 렌더링될 때까지 대기
+    await page
+      .waitForFunction(
+        (statuses) => {
+          const t = (document.body && document.body.innerText) || '';
+          if (t.includes('예약번호')) return true; // 예약 카드 렌더 완료
+          if (statuses.some((s) => t.includes(s))) return true; // 상태 배지 렌더 완료
+          if (/예약.*없|내역이 없/.test(t)) return true; // "예약 없음" 화면
+          return false;
+        },
+        ALL_STATUS,
+        { timeout: 25000 }
+      )
+      .catch(() => {}); // 시간 내 못 떠도 아래에서 현재 상태로 처리
+
     const pageText = await page.evaluate(() => document.body.innerText);
     const reservations = parseReservations(pageText);
 
     if (reservations.length === 0) {
-      log('예약 카드를 찾지 못했습니다. (페이지 로딩 지연이거나 사이트 구조 변경일 수 있음)');
+      log('예약 카드를 찾지 못했습니다. (신규 예약이 없거나, 로딩 지연/사이트 구조 변경일 수 있음)');
       return;
     }
 
